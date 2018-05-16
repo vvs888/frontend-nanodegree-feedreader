@@ -31,6 +31,26 @@ $(function() {
          * in the allFeeds object and ensures it has a URL defined
          * and that the URL is not empty.
          */
+         it('have a defined and have not empty URL', () => {
+            let allFeedsUrls = [];
+
+            allFeeds.forEach(feed => {
+                let url = feed.url;
+                // url must not be undefined, number, ''
+                if (url !== undefined &&
+                    typeof url !== 'number' &&
+                    url !== '') {
+                    allFeedsUrls.push(url);
+                }
+            });
+            // check if there are all Urls
+            if (allFeedsUrls.length < allFeeds.length) {
+                allFeedsUrls = [];
+            }
+
+            expect(allFeedsUrls).toBeDefined();
+            expect(allFeedsUrls.length).not.toBe(0);
+         });
 
 
         /* TODO: Write a test that loops through each feed
