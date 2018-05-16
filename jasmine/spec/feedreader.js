@@ -57,6 +57,26 @@ $(function() {
          * in the allFeeds object and ensures it has a name defined
          * and that the name is not empty.
          */
+         it('have a defined and have not empty name', () => {
+            let allFeedsNames = [];
+
+            allFeeds.forEach(feed => {
+                let name = feed.name;
+                // name must not be undefined, number, ''
+                if (name !== undefined &&
+                    typeof name !== 'number' &&
+                    name !== '') {
+                    allFeedsNames.push(name);
+                }
+            });
+            // check if there are all names
+            if (allFeedsNames.length < allFeeds.length) {
+                allFeedsNames = [];
+            }
+
+            expect(allFeedsNames).toBeDefined();
+            expect(allFeedsNames.length).not.toBe(0);
+         });
 
     });
 
