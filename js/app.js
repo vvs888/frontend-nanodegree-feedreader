@@ -28,9 +28,9 @@ class Menu {
     constructor() {
         this.e = document.querySelector('body');
         this.isHidden = () => this.e.classList.contains('menu-hidden');
+        this.isChangeState = () => this.e.classList.toggle('menu-hidden');
     }
  }
- const menu = new Menu();
 
 /* This function starts up our application. The Google Feed
  * Reader API is loaded asynchonously and will then call this
