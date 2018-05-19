@@ -23,12 +23,39 @@ var allFeeds = [
     }
 ];
 
-// The Menu
+// This is the Menu application
 class Menu {
     constructor() {
         this.e = document.querySelector('body');
         this.isHidden = () => this.e.classList.contains('menu-hidden');
+        //for change the menu visibility
         this.isChangeState = () => this.e.classList.toggle('menu-hidden');
+    }
+ }
+
+// This is the Feed application
+ class Feed {
+    constructor() {
+        this.container = [];
+        this.loadComplete = false;
+
+        /* asyncronous function to get all entries
+         * when the loadFeed function is called
+         * and completes its work
+        */
+        this.getInitialEntries = cb => {
+            let self = this;
+
+            setTimeout(() => {
+                self.loadComplete = true;
+                let ent = document.querySelectorAll('.entry-link');
+                let entArr = Array.from(ent);
+                self.container.push(...entArr);
+                if (cb) {
+                    return cb();
+                }
+            }, 2500);
+        }
     }
  }
 
