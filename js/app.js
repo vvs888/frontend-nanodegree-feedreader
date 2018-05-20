@@ -36,7 +36,7 @@ class Menu {
 // This is the Feed application
  class Feed {
     constructor() {
-        this.container = [];
+        this.entries = [];
         this.loadComplete = false;
 
         /* asyncronous function to get all entries
@@ -49,15 +49,17 @@ class Menu {
             setTimeout(() => {
                 self.loadComplete = true;
                 let ent = document.querySelectorAll('.entry-link');
-                let entArr = Array.from(ent);
-                self.container.push(...entArr);
+                self.entries.push(ent[0]);
+                console.log(self.entries);
                 if (cb) {
                     return cb();
                 }
-            }, 2500);
+            }, 2200);
         }
     }
  }
+
+ const feed = new Feed();
 
 /* This function starts up our application. The Google Feed
  * Reader API is loaded asynchonously and will then call this

@@ -107,7 +107,6 @@ $(function() {
 
     /* TODO: Write a new test suite named "Initial Entries" */
     describe('Initial Entries', () => {
-        const feed = new Feed();
 
         beforeEach((done) => {
             feed.getInitialEntries(function() {
@@ -121,8 +120,8 @@ $(function() {
          * Remember, loadFeed() is asynchronous so this test will require
          * the use of Jasmine's beforeEach and asynchronous done() function.
          */
-         it('there is at least a single entry within the feed container', (done) => {
-            expect(feed.container.length).not.toBe(0);
+         it('have at least a single entry', (done) => {
+            expect(feed.entries.length).not.toBe(0);
             done();
          });
 
