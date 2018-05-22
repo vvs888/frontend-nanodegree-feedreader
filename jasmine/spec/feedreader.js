@@ -83,16 +83,7 @@ $(function() {
 
     /* TODO: Write a new test suite named "The menu" */
     describe('The menu', () => {
-        // This is the Menu application
-        class Menu {
-            constructor() {
-                this.e = document.querySelector('body');
-                this.isHidden = () => this.e.classList.contains('menu-hidden');
-                //for change the menu visibility
-                this.isChangeState = () => this.e.classList.toggle('menu-hidden');
-            }
-         }
-        const menu = new Menu();
+
         /* TODO: Write a test that ensures the menu element is
          * hidden by default. You'll have to analyze the HTML and
          * the CSS to determine how we're performing the
@@ -117,30 +108,9 @@ $(function() {
     /* TODO: Write a new test suite named "Initial Entries" */
     describe('Initial Entries', () => {
 
-        // This is the Feed application
-         class Feed {
-            constructor() {
-                this.entries = [];
-
-                // to get initial entry
-                this.getInitialEntries = cb => {
-                    let self = this;
-
-                    setTimeout(() => {
-                        let ent = document.querySelectorAll('.entry-link');
-                        self.entries.push(ent[0].getAttribute('href'));
-                        console.log(self.entries);
-                        if (cb) {
-                            return cb();
-                        }
-                    }, 2200);
-                }
-            }
-         }
-         const feed = new Feed();
-
         beforeEach(done => {
-            feed.getInitialEntries(function() {
+            feed.getEntries(function() {
+                console.log(feed.entries);
                 done();
             });
         });
@@ -161,10 +131,22 @@ $(function() {
     /* TODO: Write a new test suite named "New Feed Selection" */
     describe('New Feed Selection', () => {
 
+        beforeEach(done => {
+            feed.getNewEntries(function() {
+                console.log(feed.entries);
+                done();
+            });
+        });
+
+        afterEach(() => loadFeed(0));
+
         /* TODO: Write a test that ensures when a new feed is loaded
          * by the loadFeed function that the content actually changes.
          * Remember, loadFeed() is asynchronous.
          */
+         it('changes content', () => {
+            expect(feed.entries).not.toEqual(feed.initEntries);
+         });
     });
 
 }());

@@ -32,20 +32,36 @@ class Menu {
         this.isChangeState = () => this.e.classList.toggle('menu-hidden');
     }
  }
+ const menu = new Menu();
 
 // This is the Feed application
  class Feed {
     constructor() {
         this.entries = [];
+        this.initEntries = this.entries;
 
         // to get initial entry
-        this.getInitialEntries = cb => {
+        this.getEntries = cb => {
             let self = this;
 
             setTimeout(() => {
                 let ent = document.querySelectorAll('.entry-link');
                 self.entries.push(ent[0].getAttribute('href'));
-                console.log(self.entries);
+                if (cb) {
+                    return cb();
+                }
+            }, 2200);
+        }
+        // to load new feed and to get new entry
+        this.getNewEntries = cb => {
+            let self = this;
+            self.entries = [];
+
+            loadFeed(1);
+
+            setTimeout(() => {
+                let ent = document.querySelectorAll('.entry-link');
+                self.entries.push(ent[0].getAttribute('href'));
                 if (cb) {
                     return cb();
                 }
@@ -53,7 +69,6 @@ class Menu {
         }
     }
  }
-
  const feed = new Feed();
 
 /* This function starts up our application. The Google Feed
