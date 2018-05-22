@@ -2,7 +2,7 @@
 
 # Feed Reader Testing
 
-#### Sets of tests for javascript code
+#### Set of tests for javascript code with [Jasmine Testing Framework](https://jasmine.github.io/)
 
 ## Installing
 
