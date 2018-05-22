@@ -37,19 +37,14 @@ class Menu {
  class Feed {
     constructor() {
         this.entries = [];
-        this.loadComplete = false;
 
-        /* asyncronous function to get all entries
-         * when the loadFeed function is called
-         * and completes its work
-        */
+        // to get initial entry
         this.getInitialEntries = cb => {
             let self = this;
 
             setTimeout(() => {
-                self.loadComplete = true;
                 let ent = document.querySelectorAll('.entry-link');
-                self.entries.push(ent[0]);
+                self.entries.push(ent[0].getAttribute('href'));
                 console.log(self.entries);
                 if (cb) {
                     return cb();

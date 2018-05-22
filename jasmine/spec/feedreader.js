@@ -83,6 +83,15 @@ $(function() {
 
     /* TODO: Write a new test suite named "The menu" */
     describe('The menu', () => {
+        // This is the Menu application
+        class Menu {
+            constructor() {
+                this.e = document.querySelector('body');
+                this.isHidden = () => this.e.classList.contains('menu-hidden');
+                //for change the menu visibility
+                this.isChangeState = () => this.e.classList.toggle('menu-hidden');
+            }
+         }
         const menu = new Menu();
         /* TODO: Write a test that ensures the menu element is
          * hidden by default. You'll have to analyze the HTML and
@@ -108,7 +117,29 @@ $(function() {
     /* TODO: Write a new test suite named "Initial Entries" */
     describe('Initial Entries', () => {
 
-        beforeEach((done) => {
+        // This is the Feed application
+         class Feed {
+            constructor() {
+                this.entries = [];
+
+                // to get initial entry
+                this.getInitialEntries = cb => {
+                    let self = this;
+
+                    setTimeout(() => {
+                        let ent = document.querySelectorAll('.entry-link');
+                        self.entries.push(ent[0].getAttribute('href'));
+                        console.log(self.entries);
+                        if (cb) {
+                            return cb();
+                        }
+                    }, 2200);
+                }
+            }
+         }
+         const feed = new Feed();
+
+        beforeEach(done => {
             feed.getInitialEntries(function() {
                 done();
             });
@@ -120,7 +151,7 @@ $(function() {
          * Remember, loadFeed() is asynchronous so this test will require
          * the use of Jasmine's beforeEach and asynchronous done() function.
          */
-         it('have at least a single entry', (done) => {
+         it('have at least a single entry', done => {
             expect(feed.entries.length).not.toBe(0);
             done();
          });
