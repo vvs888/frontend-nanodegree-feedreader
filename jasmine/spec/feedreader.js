@@ -74,22 +74,24 @@ $(function() {
 
     /* "The menu" test suite */
     describe('The menu', () => {
+        const menu = $('body');
+        const menuIcon = $('.menu-icon-link');
 
         /* To make sure that the menu element is
          * hidden by default.
          */
          it('is hidden by default', () => {
-            expect($('body').hasClass('menu-hidden')).toEqual(true);
+            expect((menu).hasClass('menu-hidden')).toEqual(true);
          });
 
          /* to make sure that the menu changes
           * visibility when the menu icon is clicked.
           */
           it('changes visibility when the menu icon is clicked', () => {
-            $('.menu-icon-link').click();
-            expect($('body').hasClass('menu-hidden')).toEqual(false);
-            $('.menu-icon-link').click();
-            expect($('body').hasClass('menu-hidden')).toEqual(true);
+            menuIcon.click();
+            expect((menu).hasClass('menu-hidden')).toEqual(false);
+            menuIcon.click();
+            expect((menu).hasClass('menu-hidden')).toEqual(true);
           });
     });
 
