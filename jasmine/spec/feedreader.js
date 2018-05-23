@@ -98,13 +98,12 @@ $(function() {
 
     /* "Initial Entries" test suite */
     describe('Initial Entries', () => {
-        let initEntry;
+        let initEntries;
 
         // getting initial entries
         beforeEach(done => {
             loadFeed(0, () => {
-                initEntry = $('.feed a:first-child');
-                console.log(initEntry);
+                initEntries = $('.feed .entry-link');
                 done();
             });
         });
@@ -114,7 +113,7 @@ $(function() {
          * a single .entry element within the .feed container.
          */
          it('have at least a single entry', done => {
-            expect(initEntry).not.toEqual(0);
+            expect(initEntries.length).toBeGreaterThan(0);
             done();
          });
 
