@@ -6,8 +6,8 @@
 
 ## Installing
 
-No installation required.
-Open index.html in a web browser and scroll down to see tests results.
+* No installation required.
+* Open index.html in a web browser and scroll down to see tests results.
 
 ## Tests
 
