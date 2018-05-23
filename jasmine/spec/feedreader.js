@@ -72,7 +72,6 @@ $(function() {
 
     });
 
-
     /* "The menu" test suite */
     describe('The menu', () => {
 
@@ -97,10 +96,13 @@ $(function() {
 
     /* "Initial Entries" test suite */
     describe('Initial Entries', () => {
+        let initEntry;
 
+        // getting initial entries
         beforeEach(done => {
-            feed.getEntries(function() {
-                console.log(feed.entries);
+            loadFeed(0, () => {
+                initEntry = $('.feed a:first-child');
+                console.log(initEntry);
                 done();
             });
         });
@@ -110,7 +112,7 @@ $(function() {
          * a single .entry element within the .feed container.
          */
          it('have at least a single entry', done => {
-            expect(feed.entries.length).not.toBe(0);
+            expect(initEntry).not.toEqual(0);
             done();
          });
 
@@ -118,22 +120,30 @@ $(function() {
 
     /* "New Feed Selection" test suite */
     describe('New Feed Selection', () => {
+        let prevUrl;
+        let newUrl;
 
+        // loading new feed and getting its first url
         beforeEach(done => {
-            feed.getNewEntries(function() {
-                console.log(feed.entries);
+            loadFeed(1, () => {
+                newUrl = $('.feed a').attr('href');
+                console.log(newUrl);
                 done();
             });
         });
 
+        // loading initial feed again
         afterEach(done => {
-            loadFeed(0)
-            done();
+            loadFeed(0, () => {
+               prevUrl = $('.feed a').attr('href');
+               console.log(prevUrl);
+               done();
+            });
         });
 
         // To make sure when a new feed is loaded the content actually changes
          it('changes content', () => {
-            expect(feed.entries).not.toEqual(feed.initEntries);
+            expect(newUrl).not.toEqual(prevUrl);
          });
     });
 
