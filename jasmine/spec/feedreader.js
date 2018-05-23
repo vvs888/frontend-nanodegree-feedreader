@@ -19,7 +19,6 @@ $(function() {
             expect(allFeeds.length).not.toBe(0);
         });
 
-
         /* Looping through each feed in the allFeeds object
          * and ensures it has a URL defined
          * and that the URL is not empty.
@@ -81,15 +80,17 @@ $(function() {
          * hidden by default.
          */
          it('is hidden by default', () => {
-            expect(menu.isHidden()).toBe(true);
+            expect($('body').hasClass('menu-hidden')).toEqual(true);
          });
 
          /* to make sure that the menu changes
           * visibility when the menu icon is clicked.
           */
           it('changes visibility when the menu icon is clicked', () => {
-            expect(menu.isChangeState()).toBe(false);
-            expect(menu.isChangeState()).toBe(true);
+            $('.menu-icon-link').click();
+            expect($('body').hasClass('menu-hidden')).toEqual(false);
+            $('.menu-icon-link').click();
+            expect($('body').hasClass('menu-hidden')).toEqual(true);
           });
     });
 

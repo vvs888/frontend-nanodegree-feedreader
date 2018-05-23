@@ -23,17 +23,6 @@ var allFeeds = [
     }
 ];
 
-// This is the Menu application
-class Menu {
-    constructor() {
-        this.e = document.querySelector('body');
-        this.isHidden = () => this.e.classList.contains('menu-hidden');
-        //for change the menu visibility
-        this.isChangeState = () => this.e.classList.toggle('menu-hidden');
-    }
- }
- const menu = new Menu();
-
 // This is the Feed application
  class Feed {
     constructor() {
