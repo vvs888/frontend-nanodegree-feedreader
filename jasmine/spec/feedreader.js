@@ -121,30 +121,31 @@ $(function() {
 
     /* "New Feed Selection" test suite */
     describe('New Feed Selection', () => {
-        let prevUrl;
-        let newUrl;
+        let initContent;
+        let newContent;
 
-        // loading new feed and getting its first url
+        // loading first and second feeds to compare their content
         beforeEach(done => {
-            loadFeed(1, () => {
-                newUrl = $('.feed a').attr('href');
-                console.log(newUrl);
-                done();
+            loadFeed(0, () => {
+                initContent = $('.feed').html();
+                loadFeed(1, () => {
+                    newContent = $('.feed').html();
+                    done();
+                });
             });
         });
 
         // loading initial feed again
         afterEach(done => {
             loadFeed(0, () => {
-               prevUrl = $('.feed a').attr('href');
-               console.log(prevUrl);
+               initContent = $('.feed').html();
                done();
             });
         });
 
         // To make sure when a new feed is loaded the content actually changes
          it('changes content', () => {
-            expect(newUrl).not.toEqual(prevUrl);
+            expect(newContent).not.toEqual(initContent);
          });
     });
 
