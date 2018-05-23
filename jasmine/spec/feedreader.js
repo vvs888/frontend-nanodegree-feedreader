@@ -137,10 +137,7 @@ $(function() {
 
         // loading initial feed again
         afterEach(done => {
-            loadFeed(0, () => {
-               initContent = $('.feed').html();
-               done();
-            });
+            loadFeed(0, () => done());
         });
 
         // To make sure when a new feed is loaded the content actually changes
