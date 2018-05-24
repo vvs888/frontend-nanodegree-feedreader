@@ -8,6 +8,7 @@
 
 * No installation required.
 * Open index.html in a web browser and scroll down to see tests results.
+* All tests are described in jasmine/spec/feedreader.js
 
 ## Tests
 
